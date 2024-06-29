@@ -5,7 +5,7 @@ This repository contains the implementation of the K-Nearest Neighbors (KNN) alg
 1. Introduction
 2. Installation
 3. Code Explanation
-4. Results
+4. Output
 
 ### 1. Introduction
 The K-Nearest Neighbors (KNN) algorithm is used for both classification and regression tasks. In this project, KNN is applied to compare an input image with a dataset to find the most similar images. The impact of different values of K (1, 3, and 5) on the results is analyzed, highlighting the importance of data preprocessing and optimal parameter selection.
@@ -18,41 +18,58 @@ To run this project, you need to have Python installed along with the following 
 - Matplotlib
 
 ### 3. Code Explanation
+
 Import Libraries
 ```
 import numpy as np
 from matplotlib import pyplot as plt
+import cv2
+from google.colab.patches import cv2_imshow
 ```
+
 Read and Display Image
-python
-Copy code
-image_path = 'images/your_image.png'
-img = plt.imread(image_path)
+```
+img = mpimg.imread(image_path)
 plt.imshow(img)
 plt.axis('off')
 plt.show()
+print (img.shape)
+```
+
 Resize and Normalize Image
-python
-Copy code
+```
 image = cv2.imread(image_path)
 resized_image = cv2.resize(image, (32, 32))
-Compute Euclidean Distance
-python
-Copy code
-distances = np.linalg.norm(images - resized_image.flatten(), axis=1)
-closest_index = np.argmin(distances)
-Display Results
-python
-Copy code
-# For 1NN
-plt.imshow(images[closest_index])
-plt.title('1NN Result')
-plt.axis('off')
-plt.show()
+if resized_image.shape[-1] == 1:
+    resized_image = cv2.cvtColor(resized_image, cv2.COLOR_GRAY2RGB)
+cv2.imwrite('resized_image.png', resized_image)
+cv2_imshow(resized_image)
 
-# For 3NN and 5NN, use loops to find and display the nearest neighbors
-Results
-1NN: Displays the closest image from the dataset.
-3NN: Displays the three closest images.
-5NN: Displays the five closest images.
-Example Output
+num_images = images.shape[0]
+height, width, channels = 32, 32, 3
+print(images.shape)
+plt.imshow (resized_image)
+```
+
+Compute Euclidean Distance
+```
+distances = np.linalg.norm(images - your_image_flat, axis=1)
+closest_index = np.argmin(distances)
+print("Index of the closest image:", closest_index)
+```
+
+Display Results
+```
+# For 3NN
+plt.figure(figsize=(10, 4))
+for i, index in enumerate(indices):
+    plt.subplot(1, 3, i+1)
+    plt.imshow(im[:,:,:,index])
+    plt.axis('off')
+    plt.title(f"Image {index}")
+plt.show()
+```
+For 3NN and 5NN, use loops to find and display the nearest neighbors
+
+### 4. Output of 3NN
+![Screenshot 2024-06-29 133023](https://github.com/muhammadtalha72014/KNN_image_comparison/assets/173653061/632b5454-a0bf-4267-a934-ded5edccdce3)
