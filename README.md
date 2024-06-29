@@ -13,9 +13,9 @@ The K-Nearest Neighbors (KNN) algorithm is used for both classification and regr
 ### 2. Installation
 To run this project, you need to have Python installed along with the following libraries:
 
-OpenCV
-NumPy
-Matplotlib
+- OpenCV
+- NumPy
+- Matplotlib
 
 ### 3. Code Explanation
 Import Libraries
