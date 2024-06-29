@@ -19,8 +19,10 @@ To run this project, you need to have Python installed along with the following 
 
 ### 3. Code Explanation
 Import Libraries
-''' import numpy as np
-from matplotlib import pyplot as plt'''
+```
+import numpy as np
+from matplotlib import pyplot as plt
+```
 Read and Display Image
 python
 Copy code
